@@ -1,0 +1,256 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+body
+{
+	height: 100%;
+	width: 100%;
+	font-family: sans-serif;
+	margin: 0px;
+	padding: 0px;
+	background-color: #efefef;
+}
+div.centered
+{
+	text-align: center;
+}
+
+div#welcome
+{
+	-webkit-transition: opacity 2s ease-in-out;
+	/*display: table;*/
+	display: none;
+	position: absolute; 
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-image: url('top.png');
+}
+
+div#welcomeText
+{
+	vertical-align: center;
+	display: table-cell;
+	text-shadow: #000000 1px -2px 4px;
+	font-family: serif;
+	color: #a0a0a0;
+	font-size: 20em;
+	opacity: 0.2;
+	text-effect: italic;
+}	
+
+canvas
+{
+	font-family: sans-serif, free-sans, sans, arial;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	/* background-color: #e0ffff; */
+}
+div#menu
+{
+	position: relative;
+	background-image: url('top.png');
+	background-color: #b0ffff;
+	border-bottom: 1px #f0f0f0 solid;
+	width: 100%;
+	height: auto;
+}
+
+a
+{
+	color: #0000ff;
+	text-decoration: none;
+}
+
+a.menu
+{
+	display: inline-block;
+	color: #c0c0c0;
+	font-weight: bold;
+	padding: 1em;
+	padding-top: 2em;
+	padding-bottom: 0;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+div#nodePlacer
+{
+	display:None;
+}
+
+div#heatmapArea
+{
+	display: None;
+}
+
+
+span#notifier
+{
+	float: right;
+}
+
+a.menu:hover
+{
+	text-decoration: none;
+	background-image: url('top-hover.png');
+}
+
+div#notifierDrop
+{
+	float: right;
+	position: absolute;
+	display: none;
+	border: 1px solid #ff00ff;
+	clear: both;
+	background: url('top.png');
+}
+
+/*Menu*/
+
+#nav
+{
+	color: #ffffff;
+	height: 4.1em;
+	position: relative;
+	/*border: 1px solid #ff00ff;*/
+	margin: 0;
+	padding: 0;
+	background: url('top.png');
+}
+
+#nav li
+{
+	/*border: 1px solid #ffff00;*/
+	height: 2em;
+	padding-top: 2em;
+	list-style: none;
+	float: left;
+}
+
+#nav li:hover
+{
+	background: url('top-hover.png');
+}
+
+#nav li a
+{
+	color: #ffffff;
+	display: block;
+	padding: 3px 8px;
+	text-decoration: none;
+}
+
+#nav li ul
+{
+	padding: 0.1em;
+	display: none;
+	/*width: 10em;*/
+	background: url('top-hover.png');
+}
+
+#nav li:hover ul
+{
+	display: block;
+	position: absolute;
+	padding: 0;
+}
+
+#nav li:hover li
+{
+	padding: 0.1em;
+	margin: 0;
+	background: url('top.png');
+
+	float: none;
+}
+
+#nav li:hover li:hover
+{
+	background:url('top-hover.png');
+}
+
+ul#graphNodeSelect
+{
+	text-align: left;
+	list-style: none;
+}
+
+ul#graphNodeSelect li
+{
+	border: 1px solid #cccccc;
+	padding: 0.5em;
+	margin: 0;
+}
+
+#colLeft
+{
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 20%;
+	min-width: 250px;
+}
+
+#colRight
+{
+	margin: 0;
+	padding: 0;
+	float: right;
+	width: auto;
+}
+
+ul#nodesToPlace
+{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul#nodesToPlace li
+{
+	padding: 0.5em;
+	border: 1px solid #bbbbbb;
+}
+
+ul#nodesToPlace li:hover
+{
+	padding: 0.5em;
+	border: 1px solid #bbbbbb;
+	background: #ffffff;
+}
+
+#debugMenu
+{
+	display: none;
+}
+
+/* For node placer */
+
+#chipArea
+{
+	
+	float:left;
+	width:300px;
+	height:870px;
+}
+
+#groupArea
+{
+	float:left;
+	width:960px;
+	height:870px;
+}
+
+select
+{
+	margin: 0.4em;
+}

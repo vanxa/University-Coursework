@@ -1,0 +1,103 @@
+<html>
+<head>
+<style>
+
+ul#sensk li
+{
+	border: 1px dashed #cccccc;
+}
+
+</style>
+
+<script>
+
+function dragEnterListener(ev)
+{
+	ev.preventDefault();
+	ev.dataTransfer.dropEffect = 'Move';
+	return ev.dataTransfer.types.contains('URL');
+}
+
+function dragOverListener(ev)
+{
+	ev.preventDefault();
+}
+
+function dropListener(ev)
+{
+	ev.preventDefault();
+	//var files = ev.dataTransfer.files;
+		//alert( ev.dataTransfer.types );
+	//if( ev.dataTransfer.types.contains("text") )
+	//{
+	//	this.textContent = ev.dataTransfer.getData('text');
+	//}
+	//else if( ev.dataTransfer.types.contains("URL") )
+	//{
+
+		url = ev.dataTransfer.getData('URL');
+
+		im = new Image();
+		im.src = this.textContent = ev.dataTransfer.getData('URL');
+
+		x = (ev.pageX - this.offsetLeft - im.width/2);
+		y = (ev.pageY - this.offsetTop - im.height/2);
+
+
+		//alert( "Chip " + url.split('?')[1].split('=')[1] + " added at " + x + "," + y  );
+		//im.style.left = (ev.pageX - this.offsetLeft ) + 'px';
+		//im.style.top = (ev.pageY - this.offsetTop ) + 'px';
+		//im.style.position = "absolute";
+	
+		im.onload = function() { document.getElementById('dz').getContext('2d').drawImage( im , x , y ); };
+
+}
+
+function keypress(ev)
+{
+	//
+}
+
+window.onload = function()
+{
+	document.addEventListener( 'keydown' , keypress , true );
+	dz = document.getElementById('dz');
+	dz.addEventListener('dragenter', dragEnterListener ,true);
+	dz.addEventListener('dragover', dragOverListener ,true);
+	dz.addEventListener('drop', dropListener,true);
+
+	
+	lsk = document.getElementById('sensk');
+	for( var i = 0 ; i < lsk.childNodes.length ; i++ )
+	{
+		lsk.childNodes[i].setAttribute( 'draggable' , true );
+	}
+}
+</script>
+</head>
+<body>
+<div>
+<div style="float: right; width: 50%; background: #ffccff">
+<canvas width="400" height="400" style="width: 400; height: 400; border: 1px dashed" id="dz">
+Dropzone!
+</canvas>
+</div>
+
+<div style="float: left; width: 50%; background: #ccffff">
+<ul id="sensk">
+<li>
+<img src="sensor.png?id=4">
+Bla bla
+</li>
+<li>
+<img src="sensor.png?id=5">Something
+</li>
+<li>
+<img src="sensor.png?id=SLIPCC">Else
+</li>
+</ul>
+
+</div>
+</div>
+</body>
+</html>

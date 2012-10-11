@@ -1,0 +1,9 @@
+This is the second coursework for the Parallel Processing Languages and Systems course. The first part of the coursework aims to create a C/MPI program implementing the Adaptive Quadrature problem using a Bag of Tasks approach. Implementation resides in aquad.c file, along with a description of the implementation.
+
+OpenMPI is required to be installed on the system. To compile, run the command
+    mpicc -o aquad aquad.c stack.h stack.c
+To run, type in the command
+    mpirun -c procs ./aquad
+where procs defines the number of parallel threads to execute the program. So, for example, mpirun -c 5 ./aquad will start the program with 1 farmer and 4 workers.
+
+The second part consists of a report on the Bulk Synchronous Parallel (BSP) model.

@@ -1,0 +1,8 @@
+To run the source, start the HTTP server from the python3.1 interpreter by executing the following command:
+
+python -i HttpServer.py
+
+REQUIREMENTS
+- Python3.1
+- pyserial module for Python3.1: http://pyserial.sourceforge.net/
+- runs on Windows!

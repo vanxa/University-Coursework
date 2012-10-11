@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/13/trunk/Text_technologies/tts2
+END
+a2.qrys
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/11/trunk/Text_technologies/tts2/a2.qrys
+END
+a2.qrel
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/11/trunk/Text_technologies/tts2/a2.qrel
+END
+Lab2Support.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/11/trunk/Text_technologies/tts2/Lab2Support.py
+END
+trec_eval
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/11/trunk/Text_technologies/tts2/trec_eval
+END
+translate.py
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/13/trunk/Text_technologies/tts2/translate.py
+END
+test.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/12/trunk/Text_technologies/tts2/test.py
+END
+overlap.top
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/11/trunk/Text_technologies/tts2/overlap.top
+END
+a2.docs
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/11/trunk/Text_technologies/tts2/a2.docs
+END
+task1.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/11/trunk/Text_technologies/tts2/task1.py
+END
+detech.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/12/trunk/Text_technologies/tts2/detech.txt
+END
+task2.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/12/trunk/Text_technologies/tts2/task2.py
+END
+task3.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/13/trunk/Text_technologies/tts2/task3.py
+END
+test.qrys
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/11/trunk/Text_technologies/tts2/test.qrys
+END
+tfidf.top
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/11/trunk/Text_technologies/tts2/tfidf.top
+END

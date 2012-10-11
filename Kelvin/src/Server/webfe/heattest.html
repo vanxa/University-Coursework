@@ -1,0 +1,23 @@
+<html>
+<head>
+<script src="jsCanvas.js"></script>
+<script src="canvasMap.js"></script>
+<script>
+window.onload = function()
+{
+	alert("heatmap");
+	var map = new canvasMap("heatmap");
+	var data = {"5:5":20, "20:10":10, "30:40":25, "15:45":5};
+	map.setHeatmapAlpha(1.0);
+	map.setHeatmapPointRadius(9999);
+	map.calcHeatmap(data, 50, 50);
+	map.redraw();
+	//Create fake heatmap
+}
+</script>
+</head>
+<body>
+<canvas id="heatmap" width="500" height="500">
+</canvas>
+</body>
+</html>

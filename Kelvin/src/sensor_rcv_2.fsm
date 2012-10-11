@@ -1,0 +1,99 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.52" author="Qfsm" >
+  <machine nummooreout="8" transfontitalic="0" draw_it="1" statefontsize="8" transfont="Helvetica" statefontitalic="0" author="" description="" version="" name="rcv_2" arrowtype="1" numbits="4" statefontweight="50" statefont="Helvetica" numin="8" transfontsize="8" transfontweight="50" type="1" numout="8" initialstate="0" >
+    <outputnames_moore>s_out7,s_out6,s_out5,s_out4,s_out3,s_out2,s_out1,s_out0</outputnames_moore>
+    <inputnames>i_7,i_6,i_5,i_4,i_3,i_2,i_1,i_0</inputnames>
+    <outputnames>o_7,o_6,o_5,o_4,o_3,o_2,o_1,o_0</outputnames>
+    <itransition ypos="76" endx="517" xpos="457" endy="76" />
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="76" code="0" xpos="577" linewidth="1" >no_error</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="209" code="1" xpos="287" linewidth="1" >temperature</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="262" code="2" xpos="463" linewidth="1" >humidity</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="265" code="3" xpos="618" linewidth="1" >light</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="255" code="4" xpos="829" linewidth="1" >pressure</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="206" code="5" xpos="1010" linewidth="1" >rtt</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="597" code="6" xpos="529" linewidth="1" >DBE</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="423" code="7" xpos="273" linewidth="1" >sht_calibrator</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="438" code="8" xpos="760" linewidth="1" >adc_calibrator</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="467" code="9" xpos="959" linewidth="1" >network_stats.log</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="611" code="10" xpos="257" linewidth="1" >BST</state>
+    <transition c1x="454.9790683920104" c2y="139.1052008527633" c1y="123.5813901052426" description="" straight="1" type="1" ypos="108.0575793577218" endx="312.3731279198674" xpos="526.282038628082" endy="154.6290116002841" c2x="383.6760981559389" >
+      <from>0</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0" >cmd='KELVIN.TEMP'</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="519.7451304214846" c2y="177.0772158954606" c1y="150.9892723323763" description="" straight="1" type="1" ypos="124.9013287692921" endx="474.7669681082911" xpos="542.2342115780814" endy="203.1651594585448" c2x="497.2560492648878" >
+      <from>0</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0" >cmd='KELVIN.HUM'</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="607.4770284754817" c2y="183.6843949941643" c1y="158.8733046840188" description="" straight="1" type="1" ypos="134.0622143738733" endx="638.1801838198894" xpos="592.1254508032779" endy="208.4954853043097" c2x="622.8286061476856" >
+      <from>0</from>
+      <to>3</to>
+      <inputs default="0" any="0" invert="0" >cmd='KELVIN.LGHT'</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="680.8710631393802" c2y="175.1129530858458" c1y="144.0499144440957" description="" straight="1" type="1" ypos="112.9868758023456" endx="794.1257083768542" xpos="624.2437405206432" endy="206.1759917275959" c2x="737.4983857581171" >
+      <from>0</from>
+      <to>4</to>
+      <inputs default="0" any="0" invert="0" >cmd='KELVIN.PRSR'</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="748.2067653411926" c2y="134.9749742552508" c1y="110.8020770770833" description="" straight="1" type="1" ypos="86.62917989891591" endx="972.5182971467345" xpos="636.0509994384217" endy="159.1478714334182" c2x="860.3625312439636" >
+      <from>0</from>
+      <to>5</to>
+      <inputs default="0" any="0" invert="0" >cmd='KELVIN.PING'</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="283.132694317702" c2y="331.6986283177951" c1y="300.3493141588975" description="" straight="1" type="1" ypos="269" endx="275.3980823009323" xpos="287.0000003260869" endy="363.0479424766926" c2x="279.2653883093171" >
+      <from>1</from>
+      <to>7</to>
+      <inputs default="0" any="0" invert="0" >calibrate()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="384.6152409491096" c2y="357.5133377326624" c1y="328.86311227622" description="" straight="1" type="1" ypos="300.2128868197775" endx="320.3611330425796" xpos="416.7422949023746" endy="386.1635631891048" c2x="352.4881869958446" >
+      <from>2</from>
+      <to>7</to>
+      <inputs default="0" any="0" invert="0" >calibrate()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="678.2682671800438" c2y="362.5059016547557" c1y="338.059683151069" description="" straight="1" type="1" ypos="313.6134646473823" endx="728.470427156685" xpos="653.1671871917233" endy="386.9521201584425" c2x="703.3693471683645" >
+      <from>3</from>
+      <to>8</to>
+      <inputs default="0" any="0" invert="0" >calibrate()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="798.651134530585" c2y="359.0702500924883" c1y="334.6180632550036" description="" straight="1" type="1" ypos="310.1658764175189" endx="785.1434906477048" xpos="805.4049564720251" endy="383.5224369299729" c2x="791.8973125891449" >
+      <from>4</from>
+      <to>8</to>
+      <inputs default="0" any="0" invert="0" >calibrate()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="987.3223112194568" c2y="360.6830314135623" c1y="313.3063768124731" description="" straight="1" type="1" ypos="265.9297222113839" endx="947.7732735266003" xpos="1007.096830065885" endy="408.0596860146515" c2x="967.5477923730285" >
+      <from>5</from>
+      <to>9</to>
+      <inputs default="0" any="0" invert="0" >write_to_file()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="375.8819136378177" c2y="526.1375942208942" c1y="490.7570082594394" description="" straight="1" type="1" ypos="455.3764222979847" endx="480.6157002486577" xpos="323.5150203323977" endy="561.5181801823489" c2x="428.2488069432377" >
+      <from>7</from>
+      <to>6</to>
+      <inputs default="0" any="0" invert="0" >store()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="267.8067275268236" c2y="529.0920857380631" c1y="505.8971585753312" description="" straight="1" type="1" ypos="482.7022314125994" endx="269.3606288629905" xpos="267.0297768587401" endy="552.287012900795" c2x="268.583678194907" >
+      <from>7</from>
+      <to>10</to>
+      <inputs default="0" any="0" invert="0" >set_LED()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="664.5927967754616" c2y="527.34049262692" c1y="500.1073921250329" description="" straight="1" type="1" ypos="472.8742916231458" endx="571.4264068711929" xpos="711.1759917275959" endy="554.5735931288071" c2x="618.0096018233272" >
+      <from>8</from>
+      <to>6</to>
+      <inputs default="0" any="0" invert="0" >store()</inputs>
+      <outputs></outputs>
+    </transition>
+  </machine>
+</qfsmproject>

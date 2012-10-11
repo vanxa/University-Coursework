@@ -1,0 +1,6 @@
+-F0x30 -g -blit:0x1b1.0x7fff 
+ -bdata:0.0x6ff -bSSCParmBlk:0x00F7.0x00FF -BInterruptRAM:0 -Bvirtual_registers  
+ -Bbasestation_RAM 
+ -o"output/BaseStation" 
+ ./obj/base64.o ./obj/crc.o ./obj/dynmem.o ./obj/hashmap.o ./obj/kelvin_protocol.o ./obj/library.o ./obj/mac_driver.o ./obj/main.o ./obj/prospeckz_radio.o ./obj/sensors.o ./obj/serial.o ./obj/thresholds.o ./obj/timing.o ./obj/xlowpan.o   
+ C:/DOCUME~1/SLIP_2/MYDOCU~1/kelvin/src/BASEST~1/BASEST~1/lib/libPSoc.a -LC:/PROGRA~1/Cypress/Common/CYPRES~3/tools/lib/LMM/eightpages C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/lib/CY8C29000/cms.a C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/lib/LMM/UASW/NoMAC/arith.a  

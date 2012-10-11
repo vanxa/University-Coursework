@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/127/trunk/src/Server/webfe
+END
+main.js
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/127/trunk/src/Server/webfe/main.js
+END
+jsCanvas.js
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/52/trunk/src/Server/webfe/jsCanvas.js
+END
+notify.js
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/127/trunk/src/Server/webfe/notify.js
+END
+canvasMap.js
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/97/trunk/src/Server/webfe/canvasMap.js
+END
+top.png
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/52/trunk/src/Server/webfe/top.png
+END
+top-hover.png
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/52/trunk/src/Server/webfe/top-hover.png
+END
+style.css
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/127/trunk/src/Server/webfe/style.css
+END
+canvasGraph.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/127/trunk/src/Server/webfe/canvasGraph.js
+END
+dnd.html
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/94/trunk/src/Server/webfe/dnd.html
+END
+index.html
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/127/trunk/src/Server/webfe/index.html
+END
+xml.js
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/127/trunk/src/Server/webfe/xml.js
+END
+sensor.png
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/52/trunk/src/Server/webfe/sensor.png
+END

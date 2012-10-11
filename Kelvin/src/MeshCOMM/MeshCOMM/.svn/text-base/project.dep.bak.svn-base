@@ -1,0 +1,69 @@
+# DO NOT DELETE
+./obj/boot.o : \
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/m8c.inc\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/m8ssc.inc\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\lib\GLOBAL~1.INC\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\memory.inc
+./obj/crc.o : 
+./obj/dynmem.o :  C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/_const.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/limits.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/stdlib.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\dynmem.h
+./obj/hashmap.o :  C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/_const.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/limits.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/stdlib.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\config.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\dynmem.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\hashmap.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\serial.h
+./obj/library.o :  ./lib/COUNTE~1.H ./lib/Counter8.h ./lib/PRS8.h\
+   ./lib/SPIM.h ./lib/UART.h ./lib/psocapi.h ./lib/PSOCGP~1.H\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/M8c.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/m8c.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\PROSPE~1.H\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\PROSPE~2.H
+./obj/mac_driver.o :  ./lib/COUNTE~1.H ./lib/Counter8.h ./lib/PRS8.h\
+   ./lib/SPIM.h ./lib/UART.h ./lib/psocapi.h ./lib/PSOCGP~1.H\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/M8c.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/m8c.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/_const.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/limits.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/stdlib.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\config.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\MAC_DR~1.H\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\PROSPE~1.H\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\PROSPE~2.H\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\serial.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\xlowpan.h
+./obj/main.o :  ./lib/COUNTE~1.H ./lib/Counter8.h ./lib/PRS8.h\
+   ./lib/SPIM.h ./lib/UART.h ./lib/psocapi.h ./lib/PSOCGP~1.H\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/M8c.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/m8c.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/_const.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/limits.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/stdlib.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\config.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\dynmem.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\MAC_DR~1.H\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\PROSPE~1.H\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\serial.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\xlowpan.h
+./obj/prospeckz_radio.o :  ./lib/COUNTE~1.H ./lib/Counter8.h ./lib/PRS8.h\
+   ./lib/SPIM.h ./lib/UART.h ./lib/psocapi.h ./lib/PSOCGP~1.H\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/M8c.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/m8c.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\PROSPE~2.H
+./obj/serial.o :  ./lib/COUNTE~1.H ./lib/Counter8.h ./lib/PRS8.h\
+   ./lib/SPIM.h ./lib/UART.h ./lib/psocapi.h ./lib/PSOCGP~1.H\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1/m8c.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\config.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\serial.h
+./obj/xlowpan.o :  C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/_const.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/limits.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/stdlib.h\
+   C:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/string.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\config.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\dynmem.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\hashmap.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\serial.h\
+   C:\DOCUME~1\SLIP_2\MYDOCU~1\kelvin\src\MeshCOMM\MeshCOMM\xlowpan.h

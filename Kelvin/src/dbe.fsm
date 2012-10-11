@@ -1,0 +1,37 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.52" author="Qfsm" >
+  <machine nummooreout="8" transfontitalic="0" draw_it="1" statefontsize="8" transfont="Helvetica" statefontitalic="0" author="" description="" version="" name="queues" arrowtype="1" numbits="2" statefontweight="50" statefont="Helvetica" numin="8" transfontsize="8" transfontweight="50" type="1" numout="8" initialstate="0" >
+    <outputnames_moore>s_out7,s_out6,s_out5,s_out4,s_out3,s_out2,s_out1,s_out0</outputnames_moore>
+    <inputnames>i_7,i_6,i_5,i_4,i_3,i_2,i_1,i_0</inputnames>
+    <outputnames>o_7,o_6,o_5,o_4,o_3,o_2,o_1,o_0</outputnames>
+    <itransition ypos="102" endx="177" xpos="117" endy="102" />
+    <state pencolor="0" radius="40" description="" finalstate="0" moore_outputs="" ypos="102" code="0" xpos="217" linewidth="1" >DBE</state>
+    <state pencolor="0" radius="40" description="" finalstate="0" moore_outputs="" ypos="164" code="1" xpos="638" linewidth="1" >HTTP</state>
+    <state pencolor="0" radius="40" description="" finalstate="0" moore_outputs="" ypos="381" code="2" xpos="477" linewidth="1" >DRM</state>
+    <transition c1x="368.6760114304909" c2y="115.5711311827775" c1y="96.0479366514629" description="" straight="1" type="1" ypos="76.52474212014835" endx="610.3510941613055" xpos="247.8384700650836" endy="135.094325714092" c2x="489.5135527958981" >
+      <from>0</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0" >send_response()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="575.8400846383773" c2y="297.1866325274415" c1y="246.6552768283968" description="" straight="1" type="1" ypos="196.1239211293521" endx="499.1880078490092" xpos="614.1661230330614" endy="347.7179882264862" c2x="537.5140462436932" >
+      <from>1</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0" >set_req_queue()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="484.5984498414129" c2y="122.163380923462" c1y="140.167751526324" description="" straight="1" type="1" ypos="158.172122129186" endx="256.9416909311003" xpos="598.4268292965692" endy="104.1590103206" c2x="370.7700703862566" >
+      <from>1</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >issue_request()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="381.0437315560482" c2y="205.1187252072905" c1y="278.427797873577" description="" straight="1" type="1" ypos="351.7368705398636" endx="243.671794378793" xpos="449.7297001446757" endy="131.809652541004" c2x="312.3577629674206" >
+      <from>2</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >issue_request()</inputs>
+      <outputs></outputs>
+    </transition>
+  </machine>
+</qfsmproject>

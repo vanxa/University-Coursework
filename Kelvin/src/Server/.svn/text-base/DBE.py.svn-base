@@ -1,0 +1,394 @@
+import sqlite3
+from threading import Thread
+import time
+from queue import PriorityQueue
+from XMLGenerator import XMLGenerator
+from Server_config import *
+
+class DBE(Thread):
+
+
+        tables = ('temp','light','humidity','pressure','stats')
+
+        def __init__(self, _req=None,_res=None):
+                LOGMSG("Database initialized")
+                self.req_queue = _req
+                self.res_queue = _res
+                self.closed = 0
+                Thread.__init__(self)
+
+        def run(self):
+                self.dbconn = sqlite3.connect( 'sensor_data.db' )
+                self.cursor = self.dbconn.cursor()
+                self.check_db()
+                self.serve()
+
+        def commit( self ):
+                self.dbconn.commit()
+                
+        def rollback(self):
+                self.dbconn.rollback()
+                
+
+        def close(self):
+                self.shutdown()
+                self.closed = 1   
+        		
+        def serve(self):
+                if(self.req_queue == None):
+                        return
+                else:
+                        while(not self.closed or not self.req_queue.empty()):
+                                req = self.req_queue.get()
+                                priority = req[0]
+                                cmd = req[1]
+                                if(len(req) == 3):
+                                        args = req[2]
+                                        res = cmd(*args)
+                                else:
+                                        res = cmd()
+                                if(res != None):
+                                        self.res_queue.put((priority,res))
+                        LOGMSG ("Database closing")
+
+        
+
+        def shutdown(self):
+                self.commit()
+                self.cursor.close()
+                self.dbconn.close()
+                LOGMSG("Database shutting down...")
+
+################################################## SET ###############################################################
+
+        
+        def set_measurements(self, table_name, chip_addr, value, _time ):
+                
+                if(self.check_chip(chip_addr) != 1):
+                        LOGMSG('Chip not in database! Adding...')
+                        self.add_chip(chip_addr)
+                try:
+                        if(self.check_duplicate_data(table_name,chip_addr,value,_time) == 0):
+                                if(self.check_table_name(table_name)==1):
+                                        self.cursor.execute("insert into "+table_name+" values( ? , ? , ?)", (chip_addr,value,_time))
+                                        self.commit()
+                                       
+                        else:
+                                LOGMSG("Duplicate data, discarding...")
+                except sqlite3.OperationalError:
+                        LOGMSG('Table not found!')
+                                                
+
+        def set_status(self, chip_addr, value):
+                self.cursor.execute('update chip set status=? where address=?',(value,chip_addr))
+
+
+        def set_user_settings(self, name, max_temp='', min_temp=''):
+                if(max_temp != '' and min_temp != ''):
+                        self.cursor.execute('update user_settings set max_temp=?,min_temp=? where name=?',(max_temp,min_temp,name))
+                elif(max_temp == '' and min_temp != ''):
+                        self.cursor.execute('update user_settings set min_temp=? where name=?',(min_temp,name))
+                elif(max_temp != '' and min_temp==''):
+                        self.cursor.execute('update user_settings set max_temp=? where name=?',(max_temp,name))
+                self.commit()
+
+        def set_stat_data(self,addr, rtt,hops,tm):
+                if(self.check_chip(addr) != 1):
+                        LOGMSG('Chip not in database! Adding...')
+                        self.add_chip(addr)
+                try:
+                        self.cursor.execute("insert into stats values(?, ? , ? , ?)", (addr,rtt,hops,tm))
+                        self.commit()
+                        
+                except sqlite3.OperationalError:
+                        LOGMSG('Table not found!')
+        
+######################################################################################################################
+
+################################################# ADD ################################################################
+
+        def add_chip( self , address, comment='' ):
+                if(self.check_chip(address) == 1):
+                        LOGMSG('Chip already stored in the database!')
+                else:
+                        self.cursor.execute('select max(id) from chip')
+                        query = self.cursor.fetchone()
+                        if(query[0] == None):
+                        	res = 0
+                        else:
+                                res = query[0]
+                        self.cursor.execute("""insert into chip values ( ? , ? , 1 , ? , null, null, 0)""" , ( (res+1)  , address , comment))
+                        self.commit()
+
+        
+
+        def add_to_group(self, addr, group_id,x,y):
+                if(self.group_exists(group_id) == 0):
+                        LOGMSG('Group '+str(group_id)+' has not been created! Creating and adding the chip to the group...')
+                        self.create_group(group_id)
+                
+                self.cursor.execute('update chip set group_id=? where chip.address=?',(group_id,addr))
+                self.cursor.execute('update chip set x=? , y=? where chip.address=?',(x,y,addr))
+                self.commit()
+
+
+        
+######################################################################################################################
+                
+################################################# GET ################################################################
+
+        def get_active_chips(self,group_id=None):
+                query = []
+                if(group_id == None):
+                        query = self.cursor.execute('select address from chip where status=1').fetchall()
+                else:
+                        query = self.cursor.execute('select address from chip where status=1 and group_id=?',(group_id)).fetchall()
+                result = []
+                for i in query :
+                    result.append(i[0])
+                return result
+    
+
+        def get_chip_coordinates(self, addr):
+                self.cursor.execute('select chip.x, chip.y from chip where chip.address=?',(addr,))
+                res = self.cursor.fetchone()
+                return (res[0], res[1])
+
+
+        def get_chips_xml(self,group_id):
+                xml = XMLGenerator()
+                query = []
+                query = self.cursor.execute('select * from chip where group_id=?',(group_id,)).fetchall()
+                group_name = self.get_group_name(group_id)
+                if(group_name!=''):
+                        xml.add_group(group_id,group_name)
+                        for x in query:
+                                if(str(x[6]) == group_id):
+                                        xml.add_new_board(x[1],'test',x[2],x[4],x[5])
+                        
+                return xml.print_xml()
+
+        def get_chips(self, group_id = None):
+                query = []
+                if(group_id == None):
+                        query = self.cursor.execute('select address from chip').fetchall()
+                else:
+                        query = self.cursor.execute('select address from chip where group_id=?',(group_id,)).fetchall()
+                res = []
+                for x in query:
+                        res.append(x[0])
+                return res
+                
+                
+        def get_avg_temps(self):
+                query = self.cursor.execute('select chip_addr, avg(value) from temp group by chip_addr').fetchall()
+                return query
+
+        def get_unassigned_chips(self):
+                query = self.cursor.execute('select distinct address from chip where group_id=0').fetchall()
+                res = []
+                i = 0
+                xml = XMLGenerator()
+                while(i<len(query)):
+                        xml.add_unassigned_board(str(query[i][0]))
+                        i+=1
+                return xml.print_xml()
+
+        def get_measurements(self,table,start,end,step,group_id=None,boards=[]):
+                xml = XMLGenerator()
+                if(self.check_table_name(table)==1):
+                        tm = round((end-start)/step)
+                        if(boards==[]):
+                                chips = self.get_chips()
+                                query = []
+                                for x in chips:
+                                        if(group_id == None):
+                                                query = self.cursor.execute('select avg(value),(ROUND(time/?)) as gtime, time from '+table+',chip where chip_addr=? and chip.address='+table+'.chip_addr and time>? and time<? group by (gtime)',(tm,x,start,end)).fetchall()
+                                        else:
+                                                query = self.cursor.execute('select avg(value),(ROUND(time/?)) as gtime, time from '+table+',chip where chip_addr=? and chip.group_id=? and chip.address='+table+'.chip_addr and time>? and time<? group by (gtime)',(tm,x,group_id,start,end)).fetchall()
+                                        xml.add_new_board(x,table)
+                                        for y in query:
+                                                xml.add_board_value(table,y[0],y[2])
+                                                                                    
+                        else:
+                                query = []
+                                for x in boards:
+                                        #Query for a single board
+                                        if(group_id == None):
+                                                query = self.cursor.execute('select avg(value),(ROUND(time/?)) as gtime, time from '+table+',chip where chip_addr=? and chip.address='+table+'.chip_addr and time>? and time<? group by (gtime)',(tm,x,start,end)).fetchall()
+                                        else:
+                                                query = self.cursor.execute('select avg(value),(ROUND(time/?)) as gtime, time from '+table+',chip where chip_addr=? and chip.group_id=? and chip.address='+table+'.chip_addr and time>? and time<? group by (gtime)',(tm,x,group_id,start,end)).fetchall()
+                                        xml.add_new_board(x,'temp')
+                                        for y in query:
+                                                xml.add_board_temp(y[0],y[2])                                       
+                        
+                return xml.print_xml()
+
+
+        def get_times(self,chip_id,table):
+                xml = XMLGenerator()
+                if(self.check_table_name(table)==1 and self.check_chip(chip_id)==1):
+                        query = self.cursor.execute('select min(time),max(time) from '+table+' where chip_addr=?',(chip_id,)).fetchone()
+                        xml.add_new_data_element(str(chip_id),('mintime','maxtime'),(query[0],query[1]))
+                return xml.print_xml()
+
+        def get_groups(self, xml_stat):
+                if(xml_stat == 1):
+                        xml = XMLGenerator()
+                query = self.cursor.execute('select * from chip_group').fetchall()
+                if(xml_stat == 1):
+                        for x in query:
+                                xml.add_group(x[0],x[1])
+                        return xml.print_xml()
+                else:
+                        res = []
+                        for x in query:
+                                res.append((x[0],x[1]))
+                        return res
+
+        def get_group_name(self, group_id):
+                query = self.cursor.execute('select name from chip_group where id=?',(group_id,)).fetchone()
+                if(query != None):
+                        return query[0]
+                else:
+                        return ''
+
+        def get_group_id(self,group_name):
+                query = self.cursor.execute('select id from chip_group where name=?',(group_name,)).fetchone()
+                if(query != None):
+                        return query[0]
+                else:
+                        return -1
+
+        def get_user_settings(self, name):
+                query = self.cursor.execute('select * from user_settings where name=?',(name,)).fetchone()
+                return query
+                        
+######################################################################################################################
+
+############################################### CREATE ###############################################################
+		
+		
+		def create_user_settings(self, _id, name, maxtemp, mintemp):
+				self.cursor.execute('insert into user_settings values(?,?,?,?)',(_id,name,maxtemp,mintemp))
+				self.commit()
+                
+                                      
+        def create_group(self,name,_id=None, map_path=''):
+                
+                if(_id != None):
+                        try:
+                                self.cursor.execute('insert into chip_group values(? , ?, ?)',(_id, name , map_path))
+                        except sqlite3.IntegrityError:
+                                LOGMSG('Invalid values selected!')
+                else:
+                        try:
+                                self.cursor.execute('insert into chip_group ( name , map_path ) values(?, ?)',(name,map_path))
+                        except sqlite3.IntegrityError:
+                                LOGMSG('Chosen name is not unique!')
+                self.commit()
+                     
+
+######################################################################################################################
+
+############################################## DELETE ################################################################
+
+        def del_chip ( self, chip_addr):
+                if(self.check_chip(chip_addr) == 1):
+                        
+                        self.cursor.execute( """delete from chip where address=? """, (chip_addr,) )
+                        self.commit()
+                        
+                else:
+                        LOGMSG('Chip with address '+chip_addr+' not in the database!')
+                
+
+        def del_group(self,name):
+                
+                self.cursor.execute('update chip set group_id=0 where group_id in (select group_id from chip_group where name=?)',(name,))
+                self.cursor.execute('delete from chip_group where name=?',(name,))
+                self.commit()
+                
+
+        def del_from_group(self,chip_addr):
+                
+                self.cursor.execute('update chip set group_id=0 where address=?',(chip_addr,))
+                self.commit()
+                
+                                
+###################################################################################################################### 
+        
+################################################# CHECK ##############################################################
+
+        def check_db(self):
+                self.cursor.execute('select * from sqlite_master')
+                dbs = self.cursor.fetchall()
+                if(len(dbs) != 9):
+                        LOGMSG("Database is not consistent! Deleting...")
+                        i = 0
+                        for i in dbs:
+                                if(i[0] != 'index'):
+                                        self.cursor.execute('drop table '+i[1])
+                        LOGMSG("Creating new database...")
+                        
+                        self.cursor.execute('create table chip_group(id Integer primary key, name Varchar(30) unique,map_path Varchar(70))')
+                        self.cursor.execute('create table chip(id Integer primary key, address Varchar(20), status Integer, comment Varchar(30), x Integer, y Integer, group_id Integer refereces chip_group)')
+                        self.cursor.execute('create table temp(chip_addr Varchar(20) references chip, value Float, time Integer)')
+                        self.cursor.execute('create table light(chip_addr Varchar(20) references chip, value Float, time Integer)')
+                        self.cursor.execute('create table humidity(chip_addr Varchar(20) references chip, value Float, time Integer)')
+                        self.cursor.execute('create table pressure(chip_addr Varchar(20) references chip, value Float, time Integer)')
+                        self.cursor.execute('create table user_settings(id Integer primary key, name Varchar(20), max_temp Float, min_temp Float)')
+                        self.cursor.execute('create table stats(chip_addr Varchar(20) references chip, rtt Integer, hops Integer, time Integer)')
+                        self.create_user_settings(0,'Default',23,15)
+                        self.create_group('unassigned',0)
+                        self.commit()
+                else:
+                        LOGMSG("Database consistent")
+				
+
+        def check_chip(self, chip_addr):
+        	self.cursor.execute('select * from chip where chip.address=?',(chip_addr,))
+        	query = self.cursor.fetchall()
+        	if(query == []):
+        		return 0
+        	else:
+        		return 1
+        		
+        def check_status(self,addr):
+                if(self.check_chip(addr) == 1):
+                        self.cursor.execute('select status from chip where chip.address=?',(addr,))
+                        res = self.cursor.fetchone()
+                        return res[0]
+                else:
+                        LOGMSG("Chip not in database!")
+                        return -1
+
+        
+
+        def group_exists(self,group_id):
+                query = self.cursor.execute('select * from chip_group where chip_group.id=?',(group_id,)).fetchone()
+                if(query == None):
+                        return 0
+                else:
+                        return 1
+
+
+        
+
+        def check_duplicate_data(self,table,addr, value,time):
+                if(self.check_table_name(table)==1):
+                        query = self.cursor.execute('select * from '+table+' where chip_addr=? and value=? and time=?',(addr,value,time)).fetchall()
+                        if(query==[]):
+                                return 0
+                        else:
+                                return 1
+                else:
+                        return 1
+
+        
+        def check_table_name(self,table):
+                if(table in self.tables):
+                        return 1
+                else:
+                        return 0
+######################################################################################################################

@@ -1,0 +1,189 @@
+<html>
+<head>
+<title>SLIP Group C Web Frontend</title>
+<script type="text/javascript" src="jsCanvas.js"></script>
+<script type="text/javascript" src="canvasGraph.js"></script>
+<script type="text/javascript" src="canvasMap.js"></script>
+<script type="text/javascript" src="notify.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="xml.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+<script type="text/javascript">
+var graph;
+
+function resizeMe()
+{
+	x=prompt('Resize graph to <width>,<height>','300,300').split(',');
+	window.localStorage['_w'] = x[0];
+	window.localStorage['_h'] = x[1];
+	resizeIt( x[0] , x[1] );
+}
+
+function restoreSize()
+{
+	w = parseInt(window.localStorage['_w']);
+	h = parseInt(window.localStorage['_h']);
+	if( typeof(console) != 'undefined' && w && h )
+		console.log( "Restoring locally stored width and height" );
+	w = w > 0 ? w : 700;
+	h = h > 0 ? h : 600;
+	graph.resize( w , h ); 
+}
+
+function resizeIt( _w , _h )
+{
+	graph.resize( _w , _h );
+	graph.redraw();
+}
+
+function randomLine()
+{
+	var trendingUp = true;
+
+	var last = 15+Math.floor(Math.random()*10);
+
+	var ar = new Array();
+	for( var x = 1289259000 ; x < (1289259000+86400) ; x+= 86400/40 )
+	{
+		//Low probability of changing trend
+		if( Math.random() < 0.3 )
+		  trendingUp = !trendingUp;
+
+		if( trendingUp )
+		  ar.push( [x , last+=Math.random()*0.01 ] );
+		else
+		  ar.push( [x , last-=Math.random()*0.01 ] );
+	}
+	return new canvasGraphLine(ar);
+}
+
+debug_trigger = 0;
+show_welcome_trigger = 0;
+
+function keypressHandler(ev)
+{
+	var key = ev ? ev.which : e.keyCode;
+	if( key==92 )
+	{
+		if( ++debug_trigger == 3 )
+			document.getElementById('debugMenu').style.display = 'block';
+	}
+	else
+		debug_trigger=0;
+	
+	if( key==47 )
+	{
+		if( ++show_welcome_trigger == 4 )
+		{
+			show_welcome_trigger = 0;
+			showWelcome();
+		}	
+	}
+	else
+		show_welcome_trigger=0;
+	
+
+}
+var d = new Date();
+var starttime = Math.floor(d.getTime()/1000) - 600;
+var maxDistTime = Math.floor(d.getTime()/1000) - 600;
+var selectedBoard = null;
+
+if( document.getElementById && document.createElement )
+{
+	window.onload = function()
+	{
+		initialize();
+	}
+
+}
+</script>
+</head>
+<body>
+<ul id="nav">
+	<li><a href="#" title="Home" id='home'>Home</a>
+		<!-- No children -->
+	</li>
+	<li><a href="#" title="Heat Map" id="heatmap">Heat Map</a>
+		<!-- No children -->
+	</li>
+	<li><a href="#" title="Chip Groups" id="groups">Chip Groups</a></li>
+	<li id="debugMenu"><a href="#" title="Debug">Debug</a>
+		<ul id="debugList">
+			<li>
+				<input type="button" id="not" value="Trigger test notification" />
+			</li>
+			<li>
+				<input type="button" id="addn" value="Check for notification permission" />
+			</li>
+			<li>
+				<input type="button" id="dbg" value="Debug" />
+			</li>
+			<li>
+				<input type="button" id="gph" value="Graph test line" />
+			</li>
+			<li>
+				<input type="button" id="rsz" value="Resize graph" />
+			</li>
+			<li>
+				<input type="button" id="cgph" value="Clear graph" />
+			</li>
+			<li>
+				<input type="button" id="cgt" value="Create group chooser" />
+			</li>
+		</ul>
+	<li><a href="#" id="notifications" title="Notifications">No notifications</a>
+		<ul id="notificationsList">
+		</ul>
+	</li>
+
+</ul>
+<div class="centered">
+
+<div id="welcome" onClick="hideWelcome()">
+	<div id="welcomeText">Demo</div>
+</div>
+
+<div id="grapharea">
+	<div id="colLeft">
+		Group: <select id="gMapSelect"></select>
+		<div id="dropdownArea"></div>
+		<ul id="graphNodeSelect">
+		</ul>
+	</div>
+	<div id="colRight">
+		<div id="graphTypeContainer"></div>
+		<canvas id="graph" width="400" height="400">
+		Sorry, your browser does not support the canvas element.
+		</canvas>
+		<div id="rangeSelectorContainer"></div>
+	</div>
+</div>
+
+<div id="heatmapArea">
+	Heatmap for group: <select id="heatmapGroupSelector"></select>
+	<br></br>
+	<canvas id="heatmapGraph" width="700" height="350">
+		Canvas not supported.
+	</canvas>
+</div>
+
+<div id="nodePlacer">
+	<div id="colLeft">
+	Showing nodes in group: <select id="leftGroupSelect"></select>
+	<ul id="nodesToPlace">
+
+	</ul>
+
+	</div> 
+	<div id="colRight">
+	Placing into group: <select id="rightGroupSelect"></select>
+	<input type="button" id="addGroup" value="Add group"></input>
+	<br />
+	<canvas width="700" height="350" id="placerDz">Canvas not supported.</canvas>
+</div>
+
+<br />
+</body>
+</html>

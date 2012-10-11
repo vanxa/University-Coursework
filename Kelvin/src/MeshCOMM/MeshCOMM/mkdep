@@ -1,0 +1,14 @@
+-a -f project.dep -p./lib/obj/ -o.o -- -IC:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include -I./lib -IC:/PROGRA~1/Cypress/Common/CYPRES~3/tools/include/CY8C29~1 -- 
+lib/counter16.asm   
+lib/counter16int.asm   
+lib/counter8.asm   
+lib/counter8int.asm   
+lib/prs8.asm   
+lib/psocconfig.asm   
+lib/psocconfigtbl.asm   
+lib/psocgpioint.asm   
+lib/spim.asm   
+lib/spimint.asm   
+lib/uart.asm   
+lib/uartint.asm   
+lib/uartplus.asm 

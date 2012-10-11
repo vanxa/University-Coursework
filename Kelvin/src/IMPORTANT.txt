@@ -1,0 +1,15 @@
+=========
+IMPORTANT
+=========
+
+BaseStation:
+    - This code is used for EVERY board. Please do not be confused by the name,
+      as this codebase is used for every node as well as the basestation.
+
+MeshCOMM:
+    - Template used for Xlowpan and Serial/UART communication. Do not use for
+      production!
+
+Server:
+    - The python server.
+

@@ -1,0 +1,44 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.52" author="Qfsm" >
+  <machine nummooreout="8" transfontitalic="0" draw_it="1" statefontsize="8" transfont="Helvetica" statefontitalic="0" author="" description="" version="" name="recv_1" arrowtype="1" numbits="2" statefontweight="50" statefont="Helvetica" numin="8" transfontsize="8" transfontweight="50" type="1" numout="8" initialstate="0" >
+    <outputnames_moore>s_out7,s_out6,s_out5,s_out4,s_out3,s_out2,s_out1,s_out0</outputnames_moore>
+    <inputnames>i_7,i_6,i_5,i_4,i_3,i_2,i_1,i_0</inputnames>
+    <outputnames>o_7,o_6,o_5,o_4,o_3,o_2,o_1,o_0</outputnames>
+    <itransition ypos="100" endx="123" xpos="63" endy="100" />
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="100" code="0" xpos="183" linewidth="1" >for l in serial:</state>
+    <state pencolor="0" radius="60" description="" finalstate="1" moore_outputs="" ypos="103" code="1" xpos="832" linewidth="1" >no_data</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="201" code="2" xpos="522" linewidth="1" >data</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="260" code="3" xpos="830" linewidth="1" >no_error</state>
+    <transition c1x="214.7876674966186" c2y="83.23842043869482" c1y="-36.34347874073194" description="" straight="1" type="1" ypos="47.0840998796285" endx="238.6794413051693" xpos="211.2826362712331" endy="77.64379692469659" c2x="321.9929834581949" >
+      <from>0</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >data_buffer!=[];len&lt;11</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="419.3279595172279" c2y="102.327824804786" c1y="101.6556496095721" description="" straight="1" type="1" ypos="100.9834744143581" endx="772" xpos="242.9919392758419" endy="103" c2x="595.6639797586139" >
+      <from>0</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0" >data_buffer=[]</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="202.4125197232001" c2y="170.5196944754223" c1y="203.4596914360417" description="" straight="0" type="1" ypos="157.2487892552634" endx="464.261435813568" xpos="200.9604044722395" endy="184.6825796864431" c2x="437.7085354767245" >
+      <from>0</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0" >data_buffer!=[];len>=11</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="644.4305505887546" c2y="238.3126575819328" c1y="223.7740284009715" description="" straight="1" type="1" ypos="209.2353992200101" endx="770.4273896907847" xpos="581.4321310377396" endy="252.8512867628942" c2x="707.4289701397697" >
+      <from>2</from>
+      <to>3</to>
+      <inputs default="0" any="0" invert="0" >addr:OK/RECOVERED</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="368.8282686489619" c2y="206.1897802801477" c1y="263.8180044078274" description="" straight="0" type="1" ypos="225.2498308992565" endx="133.5162688892413" xpos="467.1188037543143" endy="133.9317013330917" c2x="54.62208499519969" >
+      <from>2</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >addr:CORRUPT,DISCARD</inputs>
+      <outputs></outputs>
+    </transition>
+  </machine>
+</qfsmproject>

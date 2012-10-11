@@ -1,0 +1,30 @@
+=======
+INTRODUCTION
+============
+This is the Extreme Computing coursework directory. It consists of a set of Hadoop jobs run on a computer cluster at Edinburgh University. The task is to determine a word's most probable case (upper or lower) based on the word's occurence within a text file. 
+
+RUNNING THE JOBS
+================
+To run the whole task (in Hadoop), you'll need to run hadoop_job.sh by typing  
+./hadoop_job.sh 
+
+Before starting any jobs, specify the location of your data directory (for both input and output) and the directory location of the hadoop streaming jar file. 
+
+THE UNIX FILE
+=============
+The script unix_bayes.py contains a Python script which does the same task but running on a single Unix-type computer. It is used for comparing results.
+
+TEXT FILES
+==========
+Four text files are provided:
+small.txt
+large.txt*
+test.txt
+test-truth.txt
+The first two files contain sentences taken from the Web, one sentence per line. The third file is for testing and is all lower case, while the fourth contains the associated real case. 
+
+* large.txt was removed, because it is too large for uploading.
+LINK TO DESCRIPTION
+===================
+You can find the assignment description here: http://www.inf.ed.ac.uk/teaching/courses/exc/assignments/assignment2.pdf
+

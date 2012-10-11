@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/141/trunk/src/Server
+END
+kelvin_protocol.py
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/126/trunk/src/Server/kelvin_protocol.py
+END
+DBE.py
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/141/trunk/src/Server/DBE.py
+END
+Server_config.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/121/trunk/src/Server/Server_config.py
+END
+Serial_conn.py
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/133/trunk/src/Server/Serial_conn.py
+END
+sensor_thread.py
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/127/trunk/src/Server/sensor_thread.py
+END
+RepeatTimer.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/42/trunk/src/Server/RepeatTimer.py
+END
+scan.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/119/trunk/src/Server/scan.py
+END
+HttpServer.py
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/121/trunk/src/Server/HttpServer.py
+END
+XMLGenerator.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/120/trunk/src/Server/XMLGenerator.py
+END

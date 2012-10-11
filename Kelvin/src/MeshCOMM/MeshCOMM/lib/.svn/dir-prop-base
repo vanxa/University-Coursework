@@ -1,0 +1,19 @@
+K 10
+svn:ignore
+V 94
+*.o
+*.*~
+*.pyc
+.vimprojects
+*.o
+*.lis
+*.bak
+BuildMsg.txt
+*.dbg
+*.hex
+*.idata
+*.lst
+*.mp
+*.rom
+
+END

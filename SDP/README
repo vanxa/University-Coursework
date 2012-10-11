@@ -1,0 +1,5 @@
+This folder contains the project files for the Systems Design Project, a course running every year for 3-rd year students at the University of Edinburgh. 
+The website of the course is http://www.inf.ed.ac.uk/teaching/courses/sdp/ .
+
+This folder contains only a part of the project, its visual system, written in Java. The Web server is used to communicate to the Python-based robot logic core.
+The code is primarily written by me with some help from Abraham Polischuk

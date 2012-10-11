@@ -1,0 +1,4 @@
+This software was designed to use a set of ZigBee wireless devices to form a mesh network gathering temperature data in closed environments. 
+
+The underlying protocol is derived from the 6LoWPAN protocol stack, termed XloWPAN.
+More information can be found here: http://groups.inf.ed.ac.uk/teaching/slipc10-11/index.php

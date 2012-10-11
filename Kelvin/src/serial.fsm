@@ -1,0 +1,89 @@
+<?xml version='1.0'?>
+<!DOCTYPE qfsmproject SYSTEM 'qfsm.dtd'>
+<qfsmproject version="0.52" author="Qfsm" >
+  <machine nummooreout="0" transfontitalic="0" draw_it="1" statefontsize="8" transfont="Helvetica" statefontitalic="0" author="" description="" version="" name="serial" arrowtype="1" numbits="3" statefontweight="50" statefont="Helvetica" numin="1" transfontsize="8" transfontweight="50" type="0" numout="0" initialstate="0" >
+    <outputnames_moore></outputnames_moore>
+    <inputnames>i_0</inputnames>
+    <outputnames></outputnames>
+    <itransition ypos="204" endx="65" xpos="5" endy="204" />
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="204" code="0" xpos="125" linewidth="1" >usr_data</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="114" code="1" xpos="447" linewidth="1" >open_port</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="132" code="2" xpos="675" linewidth="1" >bst_connect</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="359" code="3" xpos="589" linewidth="1" >conn_ok</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="351" code="4" xpos="804" linewidth="1" >sensor</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="375" code="5" xpos="371" linewidth="1" >exit(fail)</state>
+    <state pencolor="0" radius="60" description="" finalstate="0" moore_outputs="" ypos="416" code="6" xpos="106" linewidth="1" >no_port</state>
+    <transition c1x="121.5105959498418" c2y="325.624659694896" c1y="294.465292236333" description="" straight="1" type="1" ypos="263.30592477777" endx="96.33208606587087" xpos="134.0998508918271" endy="356.7840271534591" c2x="108.9213410078563" >
+      <from>0</from>
+      <to>6</to>
+      <inputs default="0" any="0" invert="0" >no_port_available</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="0.1150847390590428" c2y="65.00515477632803" c1y="140.7247446447855" description="" straight="1" type="1" ypos="163.9535152169109" endx="116.5147186257614" xpos="80.32026123042108" endy="144.60303038033" c2x="141.7461339194298" >
+      <from>0</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >port_num&lt;0||port_num>10</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="161.5848581743155" c2y="80.4581821323068" c1y="69.45463183281353" description="" straight="0" type="1" ypos="148.3589740462126" endx="395.173265946094" xpos="147.4516420515283" endy="83.76773846855482" c2x="226.7838495495431" >
+      <from>0</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0" >0&lt;=port_num&lt;=10;baud(default=38400);timeout(default=1)</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="309.9667392718901" c2y="176.7464820217724" c1y="175.3889585716752" description="" straight="0" type="1" ypos="137.651468238352" endx="175.5127483378324" xpos="391.8582911928708" endy="171.6200331167741" c2x="299.5879356887418" >
+      <from>1</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >port_closed(error)</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="543.1388237790486" c2y="121.5730322900844" c1y="118.4385360073186" description="" straight="1" type="1" ypos="115.3040397245529" endx="615.4448166782756" xpos="506.985827329435" endy="124.7075285728501" c2x="579.291820228662" >
+      <from>1</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0" >port_open</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="887.4916749158015" c2y="352.1298107218623" c1y="45.5047327654412" description="" straight="0" type="1" ypos="138.8774464791078" endx="716.2389863209773" xpos="734.6045361522679" endy="175.5814869780534" c2x="838.6261938849757" >
+      <from>2</from>
+      <to>2</to>
+      <inputs default="0" any="0" invert="0" >BST_noresp&lt;5</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="551.1972911358603" c2y="270.5441163172246" c1y="220.0022835936352" description="" straight="1" type="1" ypos="169.4604508700457" endx="397.3301179103" xpos="628.1308777486404" endy="321.0859490408141" c2x="474.2637045230802" >
+      <from>2</from>
+      <to>5</to>
+      <inputs default="0" any="0" invert="0" >BST_noresp>5</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="649.9276491090025" c2y="263.2819466071657" c1y="227.5484033470279" description="" straight="1" type="1" ypos="191.8148600868902" endx="590.3632843211976" xpos="679.7098315029048" endy="299.0154898673034" c2x="620.1454667150999" >
+      <from>2</from>
+      <to>3</to>
+      <inputs default="0" any="0" invert="0" >BST:OK</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="675.7490886727356" c2y="353.2064781393869" c1y="371.4715881059396" description="" straight="1" type="1" ypos="389.7366980724922" endx="746.1889254222035" xpos="640.5291702980016" endy="334.9413681728343" c2x="710.9690070474695" >
+      <from>3</from>
+      <to>4</to>
+      <inputs default="0" any="0" invert="0" >sensor_start()</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="215.3271134856443" c2y="278.1971138496328" c1y="330.3505445892298" description="" straight="0" type="1" ypos="356.5039753288267" endx="177.502042545065" xpos="98.23964895593392" endy="233.0436831100359" c2x="266.4145780153546" >
+      <from>6</from>
+      <to>0</to>
+      <inputs default="0" any="0" invert="0" >'ENTER'</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="214.2896875515499" c2y="387.7326220226045" c1y="400.4652440452089" description="" straight="1" type="1" ypos="413.1978660678134" endx="311" xpos="165.9345313273249" endy="375" c2x="262.644843775775" >
+      <from>6</from>
+      <to>5</to>
+      <inputs default="0" any="0" invert="0" >'EXIT'</inputs>
+      <outputs></outputs>
+    </transition>
+    <transition c1x="293.2671810886687" c2y="299.3313886801385" c1y="297.7340362927832" description="" straight="0" type="1" ypos="372.1366839054278" endx="449.9233532228046" xpos="146.9390950216007" endy="173.9287410674938" c2x="372.5952671557367" >
+      <from>6</from>
+      <to>1</to>
+      <inputs default="0" any="0" invert="0" >'BREAK'</inputs>
+      <outputs></outputs>
+    </transition>
+  </machine>
+</qfsmproject>
