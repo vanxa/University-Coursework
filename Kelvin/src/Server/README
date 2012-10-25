@@ -5,4 +5,3 @@ python -i HttpServer.py
 REQUIREMENTS
 - Python3.1
 - pyserial module for Python3.1: http://pyserial.sourceforge.net/
-- runs on Windows!
